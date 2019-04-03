@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="horizontal"
+    android:background="@color/white">
+    <com.hjq.bar.TitleBar
+        app:barStyle="light"
+        app:backButton="false"
+        android:background="@color/colorPrimary"
+        android:id="@+id/titlebar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:titleColor="@color/white"
+        app:title="导航"
+        app:lineVisible="false"/>
+    <LinearLayout
+        android:layout_below="@+id/titlebar"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+        <android.support.v7.widget.RecyclerView
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:background="@color/white"
+            android:id="@+id/rv_left"
+            android:layout_height="match_parent">
+        </android.support.v7.widget.RecyclerView>
+        <FrameLayout
+            android:layout_width="0dp"
+            android:layout_weight="3"
+            android:id="@+id/fl_right"
+            android:background="@color/white"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="10dp"></FrameLayout>
+    </LinearLayout>
+
+</RelativeLayout>
