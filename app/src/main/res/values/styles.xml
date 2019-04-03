@@ -7,5 +7,10 @@
         <item name="colorPrimaryDark">@color/colorPrimary</item>
         <item name="colorAccent">@color/colorAccent</item>
     </style>
-
+    <style name="TransparentTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colortransparent</item>
+        <item name="colorPrimaryDark">@color/colortransparent</item>
+        <item name="colorAccent">@color/colortransparent</item>
+    </style>
 </resources>

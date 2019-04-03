@@ -1,8 +1,13 @@
 package com.example.zhizihua.wanandroid;
 
+import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 
 import butterknife.ButterKnife;
 
@@ -22,6 +27,7 @@ public abstract class BaseActivity extends AppCompatActivity {
     protected abstract void init();
 
     protected abstract int getLayout();
+
 
     @Override
     protected void onDestroy() {
