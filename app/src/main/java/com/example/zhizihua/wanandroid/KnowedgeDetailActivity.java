@@ -29,6 +29,12 @@ public class KnowedgeDetailActivity extends BaseActivity {
     private ArrayList<String> titles = new ArrayList<>();
     private List<Integer> ids = new ArrayList<>();
     private ArrayList<Fragment> fragments = new ArrayList<>();
+
+    @Override
+    protected void getData() {
+
+    }
+
     @Override
     protected void init() {
         childrenBeanList = (List<KnowledgeBean.DataBean.ChildrenBean>) getIntent().getSerializableExtra("ChildrenBeanlist");

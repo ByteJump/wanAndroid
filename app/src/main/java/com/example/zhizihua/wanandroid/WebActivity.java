@@ -26,6 +26,11 @@ public class WebActivity extends BaseActivity {
     String url;
 
     @Override
+    protected void getData() {
+
+    }
+
+    @Override
     protected void init() {
         url = getIntent().getStringExtra("url");
         mAgentWeb = AgentWeb.with(this)

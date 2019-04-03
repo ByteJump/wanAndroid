@@ -12,4 +12,5 @@ public class ApiAdress {
     public static final String GongZhongHao = "https://wanandroid.com/wxarticle/chapters/json";
     public static final String GongZhongHaoDetail = "https://wanandroid.com/wxarticle/list";
     public static final String Navagation = "https://www.wanandroid.com/navi/json";
+    public static final String hotkey = "https://www.wanandroid.com//hotkey/json";
 }

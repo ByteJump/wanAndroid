@@ -12,7 +12,8 @@
         android:layout_height="wrap_content"
         app:titleColor="@color/white"
         app:title="首页"
-        app:lineVisible="false"/>
+        app:lineVisible="false"
+        app:rightIcon="@mipmap/icon_search" />
     <com.scwang.smartrefresh.layout.SmartRefreshLayout
         android:layout_below="@+id/titlebar"
         android:id="@+id/refreshLayout"

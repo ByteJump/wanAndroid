@@ -23,6 +23,12 @@ public class MainActivity extends BaseActivity {
     private ArrayList<android.support.v4.app.Fragment> fragments = new ArrayList<>();
     private String TAG = "MainActivity";
     private long firstTime = 0;
+
+    @Override
+    protected void getData() {
+
+    }
+
     @Override
     protected void init() {
         Fragment01 fragment01 = new Fragment01();

@@ -4,15 +4,19 @@ import android.content.Intent;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.View;
 
 import com.example.zhizihua.wanandroid.ApiAdress;
 import com.example.zhizihua.wanandroid.Bean.ArticleBean;
 import com.example.zhizihua.wanandroid.Bean.BannerBean;
 import com.example.zhizihua.wanandroid.R;
+import com.example.zhizihua.wanandroid.SearchActivity;
 import com.example.zhizihua.wanandroid.WebActivity;
 import com.example.zhizihua.wanandroid.fragment.adapter.ArticleListAdapter;
 import com.example.zhizihua.wanandroid.utils.JsonCallback;
 import com.google.gson.Gson;
+import com.hjq.bar.OnTitleBarListener;
+import com.hjq.bar.TitleBar;
 import com.lzy.okgo.OkGo;
 import com.lzy.okgo.callback.AbsCallback;
 import com.lzy.okgo.model.Response;
@@ -35,6 +39,8 @@ public class Fragment01 extends BaseFragment {
     RecyclerView mRecyclerView;
     @BindView(R.id.refreshLayout)
     SmartRefreshLayout refreshLayout;
+    @BindView(R.id.titlebar)
+    TitleBar titleBar;
     private ArrayList<ArticleBean.DataBean.DatasBean> datas = new ArrayList<>();
     private ArrayList<BannerBean.DataBean> bannerdata = new ArrayList<>();
     private ArticleListAdapter articleListAdapter;
@@ -67,6 +73,24 @@ public class Fragment01 extends BaseFragment {
                 Intent intent = new Intent(getActivity(), WebActivity.class);
                 intent.putExtra("url", datas.get(position).getLink());
                 startActivity(intent);
+            }
+        });
+        titleBar.setOnTitleBarListener(new OnTitleBarListener() {
+
+
+            @Override
+            public void onLeftClick(View v) {
+
+            }
+
+            @Override
+            public void onTitleClick(View v) {
+
+            }
+
+            @Override
+            public void onRightClick(View v) {
+                startActivity(new Intent(getActivity(),SearchActivity.class));
             }
         });
     }
