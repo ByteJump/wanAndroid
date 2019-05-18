@@ -5,6 +5,7 @@ package com.example.zhizihua.wanandroid;
  */
 
 public class ApiAdress {
+
     public static final String Banner = "https://www.wanandroid.com/banner/json";
     public static final String ArticleList = "https://www.wanandroid.com/article/list/";
     public static final String KnowledgeList = "https://www.wanandroid.com/tree/json";
