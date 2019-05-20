@@ -7,6 +7,7 @@ import com.example.zhizihua.wanandroid.fragment.Fragment01;
 import com.example.zhizihua.wanandroid.fragment.Fragment02;
 import com.example.zhizihua.wanandroid.fragment.Fragment03;
 import com.example.zhizihua.wanandroid.fragment.Fragment04;
+import com.example.zhizihua.wanandroid.fragment.TestFragment;
 import com.hjq.toast.ToastUtils;
 
 import java.util.ArrayList;
@@ -31,11 +32,12 @@ public class MainActivity extends BaseActivity {
 
     @Override
     protected void init() {
+        TestFragment fragment0 = new TestFragment();
         Fragment01 fragment01 = new Fragment01();
         Fragment02 fragment02 = new Fragment02();
         Fragment03 fragment03 = new Fragment03();
         Fragment04 fragment04 = new Fragment04();
-        fragments.add(fragment01);
+        fragments.add(fragment0);
         fragments.add(fragment02);
         fragments.add(fragment03);
         fragments.add(fragment04);
@@ -51,7 +53,7 @@ public class MainActivity extends BaseActivity {
 
     @Override
     public boolean dispatchKeyEvent(KeyEvent event) {
-        if (event.getKeyCode() == KeyEvent.KEYCODE_BACK && event.getAction() == KeyEvent.ACTION_DOWN){
+        if (event.getKeyCode() == KeyEvent.KEYCODE_BACK && event.getAction() == KeyEvent.ACTION_DOWN) {
             long secondTime = System.currentTimeMillis();
             if (secondTime - firstTime > 2000) {// 如果两次按键时间间隔大于800毫秒，则不退出
                 ToastUtils.show("再按一次退出程序");

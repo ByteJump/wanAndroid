@@ -1,18 +1,18 @@
 package com.example.zhizihua.wanandroid.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.example.zhizihua.wanandroid.ApiAdress;
 import com.example.zhizihua.wanandroid.Bean.KnowledgeItemBean;
 import com.example.zhizihua.wanandroid.R;
+import com.example.zhizihua.wanandroid.WebActivity;
 import com.example.zhizihua.wanandroid.fragment.adapter.KnowledgeItemAdapter;
 import com.example.zhizihua.wanandroid.utils.JsonCallback;
 import com.lzy.okgo.OkGo;
@@ -22,12 +22,13 @@ import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.listener.OnLoadMoreListener;
 import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
+import com.zhy.adapter.recyclerview.CommonAdapter;
+import com.zhy.adapter.recyclerview.MultiItemTypeAdapter;
+import com.zhy.adapter.recyclerview.base.ViewHolder;
 
 import java.util.ArrayList;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.Unbinder;
 
 
 /**
@@ -40,6 +41,7 @@ public class TagFragment extends BaseFragment {
     @BindView(R.id.smartrefreshlayout)
     SmartRefreshLayout smartrefreshlayout;
     private KnowledgeItemAdapter adapter;
+    private CommonAdapter commonAdapter;
     private int id;
     private int page = 0;
     private ArrayList<KnowledgeItemBean.DataBean.DatasBean> datas = new ArrayList<>();
@@ -72,6 +74,7 @@ public class TagFragment extends BaseFragment {
                     if (page == 0) datas.clear();
                     datas.addAll(response.body().getData().getDatas());
                     adapter.notifyDataSetChanged();
+                    commonAdapter.notifyDataSetChanged();
                 }
                 if (refreshLayout != null && page == 0) {
                     refreshLayout.finishRefresh();
@@ -101,7 +104,30 @@ public class TagFragment extends BaseFragment {
     protected void init() {
         recyclerview.setLayoutManager(new LinearLayoutManager(getActivity()));
         adapter = new KnowledgeItemAdapter(datas, getActivity());
-        recyclerview.setAdapter(adapter);
+//        recyclerview.setAdapter(adapter);
+        commonAdapter = new CommonAdapter<KnowledgeItemBean.DataBean.DatasBean>(getActivity(),R.layout.article_item,datas) {
+
+            @Override
+            protected void convert(ViewHolder holder, KnowledgeItemBean.DataBean.DatasBean datasBean, int position) {
+                holder.setText(R.id.tv_author, datasBean.getAuthor());
+                holder.setText(R.id.tv_time,datasBean.getNiceDate());
+                holder.setText(R.id.tv_title,datasBean.getTitle());
+            }
+        };
+        recyclerview.setAdapter(commonAdapter);
+        commonAdapter.setOnItemClickListener(new MultiItemTypeAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(View view, RecyclerView.ViewHolder holder, int position) {
+                Intent intent = new Intent(getActivity(), WebActivity.class);
+                intent.putExtra("url", datas.get(position).getLink());
+                getActivity().startActivity(intent);
+            }
+
+            @Override
+            public boolean onItemLongClick(View view, RecyclerView.ViewHolder holder, int position) {
+                return false;
+            }
+        });
         smartrefreshlayout.setOnRefreshListener(new OnRefreshListener() {
             @Override
             public void onRefresh(@NonNull RefreshLayout refreshLayout) {
